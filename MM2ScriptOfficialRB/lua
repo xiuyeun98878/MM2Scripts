@@ -1,2 +1,2 @@
 loadstring(game:HttpGet("https://cdn.sourceb.in/bins/lVDEIRZorm/0"))()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/platinww/CrustyMain/refs/heads/main/MM2/Murder-Mystery-2.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Waguriiiii/Murder-mystery-2/refs/heads/main/Waguri.lua"))()
